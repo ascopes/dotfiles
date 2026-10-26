@@ -1,0 +1,65 @@
+[alias]
+    # Clone a repo from GitHub over ssh, e.g. git clone-gh ascopes/dotfiles
+    clone-gh = "!fn() { set -eux; repo=$1; shift; git clone \"git@github.com:${repo}\" \"${@}\"; }; fn"
+
+    # Reapply the previous commit, and force push it.
+    replace-last-commit = "!fn() { set -eux; git commit -a --amend --date=now --no-edit \"${@}\"; git push --force-with-lease; }; fn"
+
+    # Reset all submodules back to their previous state.
+    reset-submodules = "!fn() { set -eux; git submodule deinit --all --force; git submodule update --init --recursive \"${@}\"; }; fn"
+
+    # Shorthand for popping a stash
+    unstash = "!git stash pop"
+
+    # Drop all stashes
+    unstash-all = "!while git stash drop; do :; done #"
+
+    # Shorthand aliases
+    a = add
+    b = branch
+    c = commit
+    co = checkout
+    cp = cherry-pick
+    cgh = clone-gh
+    d = diff
+    f = fetch
+    ffs = replace-last-commit
+    l = log
+    p = push
+    pl = pull
+    r = rebase
+    rs = reset
+    rss = reset-submodules
+    s = stash
+    us = unstash
+    
+
+[core]
+    # Compress packfiles as much as possible
+    compression = 9
+
+[fetch]
+    # Automatically remove upstream branches and tags that no longer exist
+    prune = true
+    pruneTags = true
+
+[init]
+    defaultBranch = main
+
+[pull]
+    rebase = true
+
+[push]
+    # Implicitly set up the upstream remote if unset when I git push
+    autoSetupRemote = true
+
+[rebase]
+    # Always apply fixup! and squash! commits during a rebase
+    autoSquash = true
+    # Always stash and unstash during a rebase
+    autoStash = true
+
+[user]
+    name = Ashley Scopes
+    email = 73482956+ascopes@users.noreply.github.com
+
