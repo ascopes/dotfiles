@@ -1,0 +1,7 @@
+# Temporary files and OS garbage
+.DS_Store
+*.bak
+*.bkp
+*.db
+*.swp
+*.tmp

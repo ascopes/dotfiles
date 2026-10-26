@@ -33,10 +33,12 @@
     s = stash
     us = unstash
     
-
 [core]
     # Compress packfiles as much as possible
     compression = 9
+
+    # Global default gitignore
+    excludesfile = ~/.gitignore
 
 [fetch]
     # Automatically remove upstream branches and tags that no longer exist
